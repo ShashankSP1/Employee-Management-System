@@ -14,6 +14,7 @@ public class EmployeeController {
     @Autowired private EmployeeService service;
 
     @GetMapping("/employees")
+    //model is a method parameter & Model is predefined interface in Spring framework
     public String showEmployeeList(Model model) {
         List<Employee> listEmployees = service.listAll();
         model.addAttribute("listEmployees", listEmployees);
@@ -41,7 +42,8 @@ public class EmployeeController {
             model.addAttribute("employee", employee);
             model.addAttribute("pageTitle", "Edit Employee (ID: " + id + ")");
             return "employee_form";
-        } catch (EmployeeNotFoundException e) {
+        }
+        catch (EmployeeNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
             return "redirect:/employees";
         }

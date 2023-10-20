@@ -93,5 +93,4 @@ public class Employee {
                 ", status='" + status + '\'' +
                 '}';
     }
-
 }

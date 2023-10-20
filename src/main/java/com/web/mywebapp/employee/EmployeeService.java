@@ -11,10 +11,12 @@ public class EmployeeService {
     @Autowired private EmployeeRepository repo;
 
     public List<Employee> listAll() {
+
         return (List<Employee>) repo.findAll();
     }
 
     public void save(Employee employee) {
+
         repo.save(employee);
     }
 

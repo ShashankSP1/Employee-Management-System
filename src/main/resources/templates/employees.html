@@ -4,52 +4,82 @@
   <meta charset="UTF-8">
   <title>Manage Employees</title>
   <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
-  <style>
 
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      border: 2px solid black; /* Border color and width */
-    }
+<style>
+  #button1{
+    background-color: forestgreen;
+    color: #f2f2f2;
+  }
+  #button2{
+    background-color: red;
+    color: #f2f2f2;
+  }
+  #font{
+    color: #f2f2f2;
+  }
+  #a:hover{
+    color: yellow;
+  }
+  #div1{
+    background-color:dodgerblue;
+  }
+  #button1:hover {
+    color: yellow;
+  }
+  #button2:hover{
+    color: yellow;
+  }
+  #tr:hover{
+    background-color: wheat;
+  }
+  b{
+    background-color: red;
+  }
+  h2{
+    color: black;
+  }
+  thead{
+    background-color: black;
+    color: white;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 2px solid black;
+  }
 
-    /* Add styles for table headers */
-    th, td {
-      border: 2px solid #333; /* Border color and width for table cells */
-      padding: 8px;
-      text-align: left;
-    }
+  th, td {
+    border: 2px solid black;
+    padding: 8px;
+    text-align: left;
+  }
 
-    /* Add some styles for better appearance */
-    th {
-      background-color: #333; /* Header background color */
-      color: white; /* Header text color */
-    }
-
-    /* Add alternate row background color for better readability */
-    tr:nth-child(even) {
-      background-color: #f2f2f2; /* Light gray background color for even rows */
-    }
-  </style>
+</style>
 
 </head>
+
 <body>
 <div class="container-fluid text-center" >
-  <div style="background-color: blue">
-    <div ><h2 style="color: black">Employee Management System</h2></div>
+  <div id="div1">
+
+    <div >
+      <font face="Times New Roman"><h2>Employee Management System</h2></font>
+    </div>
+
     <div class="m-2">
-      <a class="h3" th:href="@{/employees/new}" style="color: white">Add New Employee</a>
+      <font face="Times New Roman" id="font"><a class="h3" th:href="@{/employees/new}" id="a">Add New Employee</a></font>
     </div>
 
     <div th:if="${message}" class="alert alert-success text-center">
       [[${message}]]
     </div>
 
-
   </div>
 
   <div>
-    <table class="table table-bordered">
-      <thead class="thead-dark">
+    <marquee><font face="Times New Roman"><b style="background-color: chartreuse"><caption>List of Employees</caption></b></font></marquee>
+    <table border="solid black">
+      <thead>
       <tr>
         <th>Employee Id</th>
         <th>Name</th>
@@ -58,13 +88,13 @@
         <th>Age</th>
         <th>Salary</th>
         <th>Status</th>
-        <th class="d-flex">Edit / Delete</th>
+        <th>Edit / Delete</th>
       </tr>
       </thead>
       <tbody>
 
       <th:block th:each="employee : ${listEmployees}">
-        <tr>
+        <tr id="tr">
           <td>[[${employee.id}]]</td>
           <td>[[${employee.name}]]</td>
           <td>[[${employee.email}]]</td>
@@ -74,8 +104,8 @@
           <td>[[${employee.status}]]</td>
           <td>
 
-            <a class="h4 mr-3 even-row-color" th:href="@{'/employees/edit/' + ${employee.id}}"style="color: forestgreen">Edit</a>
-            <a class="h4" th:href="@{'/employees/delete/' + ${employee.id}}" style="color: red">Delete</a>
+            <button class="btn h4 mr-3" th:onclick="'window.location.href = \'/employees/edit/\' + ' + ${employee.id}" id="button1">Edit  </button>
+            <button class=" btn h4" th:onclick="'window.location.href = \'/employees/delete/\' + ' + ${employee.id}" id="button2">Delete</button>
 
           </td>
         </tr>

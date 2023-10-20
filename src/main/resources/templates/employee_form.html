@@ -1,18 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>[[${pageTitle}]]</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+
+    <style>
+        #h2{
+            background-color: royalblue;
+            color: white;
+        }
+        #form{
+            max-width: 450px;
+            margin: 0 auto;
+        }
+    </style>
+
 </head>
 <body>
 <div class="container-fluid">
-    <div class="text-center"><h2 style="background-color: blue; color: white" >[[${pageTitle}]]</h2></div>
+    <div class="text-center">
+        <font face="Times New Roman"><h2 id="h2">[[${pageTitle}]]</h2></font>
+    </div>
 
-    <form th:action="@{/employees/save}" method="post" th:object="${employee}"
-          style="max-width: 500px; margin: 0 auto;">
+    <form th:action="@{/employees/save}" method="post" th:object="${employee}" id="form">
         <input type="hidden" th:field="*{id}">
-        <div class="border border-secondary rounded p-3">
+        <div class="border border-primary rounded p-3">
 
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Name:</label>
@@ -45,7 +60,7 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Salary:</label>
                 <div class="col-sm-8">
-                    <input type="text" th:field="*{salary}" class="form-control" />
+                    <input type="number" th:field="*{salary}" class="form-control" />
                 </div>
             </div>
 
@@ -68,22 +83,22 @@
     </form>
 
 </div>
-<script type="text/javascript">
+<script>
     function cancelForm() {
         window.location = "[[@{/employees}]]";
     }
 
     function calculateAge() {
         // Get the date of birth input element
-        var dobInput = document.getElementById("dobInput");
+        let dobInput = document.getElementById("dobInput");
 
         // Get the selected date of birth value
-        var dobValue = dobInput.value;
+        let dobValue = dobInput.value;
 
         // Calculate age based on the selected date
-        var dobDate = new Date(dobValue);
-        var currentDate = new Date();
-        var age = currentDate.getFullYear() - dobDate.getFullYear();
+        let dobDate = new Date(dobValue);
+        let currentDate = new Date();
+        let age = currentDate.getFullYear() - dobDate.getFullYear();
 
         // Set the calculated age in the "Age" input field
         document.getElementById("ageInput").value = age;
@@ -92,5 +107,6 @@
     // Add an event listener to the date input field
     document.getElementById("dobInput").addEventListener("change", calculateAge);
 </script>
+
 </body>
 </html>
